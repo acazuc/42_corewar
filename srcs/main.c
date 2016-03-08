@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:13 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/07 17:59:17 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/08 10:30:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char		*get_output_name(char *input_name)
 
 int				main(int ac, char **av)
 {
+	t_bin	bin;
+
 	if (ac != 2)
 	{
 		ft_putstr("Usage: ");
@@ -49,6 +51,7 @@ int				main(int ac, char **av)
 		ft_putstr("Invalid file name, must finish with .s");
 		return (-1);
 	}
-	parse_file(av[1], get_output_name(av[1]));
+	bin = parse_file(av[1]);
+	print_bin(&bin, get_output_name(av[1]));
 	return (0);
 }

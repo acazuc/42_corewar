@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bin_append.c                                       :+:      :+:    :+:   */
+/*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 18:07:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:07:11 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/08 09:47:44 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/08 09:57:09 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#ifndef PROTOTYPES_H
+# define PROTOTYPES_H
 
-void	bin_append(t_bin *bin, unsigned char *data, size_t len)
-{
-	unsigned char	*new;
+# include "bin.h"
 
-	if (!(new = malloc(sizeof(*new) * (bin->len + len))))
-		ERROR("Failed to realloc new bin data");
-	ft_memcpy(new, bin->data, bin->len);
-	ft_memcpy(new + bin->len, data, len);
-	bin->data = new;
-	bin->len += len;
-}
+t_bin	read_bin(char *name);
+void	dump(t_bin *bin);
+void	bin_init(t_bin *bin);
+void	bin_append(t_bin *bin, unsigned char *data, size_t len);
+
+#endif

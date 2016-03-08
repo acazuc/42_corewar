@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/07 17:56:33 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/08 10:37:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include "includes.h"
 # include "prototypes.h"
 # include "defines.h"
+# include "op.h"
 
 #endif

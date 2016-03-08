@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bin_append.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 18:07:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:07:11 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/08 09:43:31 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/08 10:07:35 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "disassembler.h"
 
-void	bin_append(t_bin *bin, unsigned char *data, size_t len)
+int		main(int ac, char **av)
 {
-	unsigned char	*new;
+	t_bin	bin;
 
-	if (!(new = malloc(sizeof(*new) * (bin->len + len))))
-		ERROR("Failed to realloc new bin data");
-	ft_memcpy(new, bin->data, bin->len);
-	ft_memcpy(new + bin->len, data, len);
-	bin->data = new;
-	bin->len += len;
+	if (ac != 2)
+	{
+		ft_putendl("./disassemble <filename.cor>");
+		exit(-1);
+	}
+	bin = read_bin(av[1]);
+	dump(&bin);
 }

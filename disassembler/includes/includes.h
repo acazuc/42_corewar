@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bin_append.c                                       :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 18:07:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:07:11 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/08 09:42:53 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/08 09:43:26 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#ifndef INCLUDES_H
+# define INCLUDES_H
 
-void	bin_append(t_bin *bin, unsigned char *data, size_t len)
-{
-	unsigned char	*new;
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-	if (!(new = malloc(sizeof(*new) * (bin->len + len))))
-		ERROR("Failed to realloc new bin data");
-	ft_memcpy(new, bin->data, bin->len);
-	ft_memcpy(new + bin->len, data, len);
-	bin->data = new;
-	bin->len += len;
-}
+#endif

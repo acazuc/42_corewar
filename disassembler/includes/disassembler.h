@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bin_append.c                                       :+:      :+:    :+:   */
+/*   disassemble.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 18:07:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:07:11 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/08 09:39:00 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/08 09:47:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#ifndef DISASSEMBLE_H
+# define DISASSEMBLE_H
 
-void	bin_append(t_bin *bin, unsigned char *data, size_t len)
-{
-	unsigned char	*new;
+# include "../libft/includes/libft.h"
+# include "includes.h"
+# include "prototypes.h"
+# include "bin.h"
 
-	if (!(new = malloc(sizeof(*new) * (bin->len + len))))
-		ERROR("Failed to realloc new bin data");
-	ft_memcpy(new, bin->data, bin->len);
-	ft_memcpy(new + bin->len, data, len);
-	bin->data = new;
-	bin->len += len;
-}
+#endif
