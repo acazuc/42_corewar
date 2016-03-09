@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/03/09 10:37:22 by acazuc           ###   ########.fr        #
+#    Updated: 2016/03/09 14:20:44 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,12 @@ SRCS_NAME = main.c \
 			parse_name_comment.c \
 			parse_error.c \
 			check_label.c \
+			print_big_endian.c \
+			check_label.c \
+			add_label.c \
+			parse_instruction.c \
+			read_instruction.c \
+			init_ops.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

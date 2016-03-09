@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_line.c                                       :+:      :+:    :+:   */
+/*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 09:07:10 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 13:58:39 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/09 13:42:26 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/09 14:34:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	parse_line(t_bin *bin, t_parser *p)
+void	parse_instruction(t_bin *bin, t_parser *p)
 {
-	p->line = ft_strtrim(p->line);
-	if (ft_strlen(p->line) == 0 || p->line[0] == ';')
-		return ;
-	if (!bin->has_name || !bin->has_comment)
-		if (parse_name_comment(bin, p))
-			return ;
-	check_label(bin, p);
-	while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
-		p->i++;
-	if (!p->line[p->i])
-		return ;
-	parse_instruction(bin, p);
+	t_op	*op;
+	
+	op = read_instruction(p);
 }

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 11:00:50 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 10:03:21 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 13:57:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ char	*read_next_line(int fd)
 {
 	char	*line;
 	char	*buff;
+	int		has;
 	int		rd;
 
+	has = 0;
 	if (!(buff = malloc(sizeof(*buff) * 2)))
 		ERROR("Failed to malloc buff");
 	buff[0] = '\0';
@@ -27,16 +29,16 @@ char	*read_next_line(int fd)
 	line[0] = '\0';
 	while ((rd = read(fd, buff, 1)) > 0 && buff[0] != '\n')
 	{
+		has = 1;
 		if (!(line = ft_strjoin_free1(line, buff)))
 			ERROR("Failed to join line");
 	}
 	if (rd == -1)
 		ERROR("Error while reading file");
-	free(buff);
-	if (line[0] == '\0')
-	{
+	if (!has && rd == 0)
 		free(line);
+	if (!has && rd == 0)
 		return (NULL);
-	}
+	free(buff);
 	return (line);
 }

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_line.c                                       :+:      :+:    :+:   */
+/*   read_instruction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 09:07:10 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 13:58:39 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/09 13:43:28 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/09 14:33:25 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	parse_line(t_bin *bin, t_parser *p)
+t_op	*g_ops;
+
+t_op	*read_instruction(t_parser *p)
 {
-	p->line = ft_strtrim(p->line);
-	if (ft_strlen(p->line) == 0 || p->line[0] == ';')
-		return ;
-	if (!bin->has_name || !bin->has_comment)
-		if (parse_name_comment(bin, p))
-			return ;
-	check_label(bin, p);
-	while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
-		p->i++;
-	if (!p->line[p->i])
-		return ;
-	parse_instruction(bin, p);
+	int		i;
+
+	i = 0;
+	while (g_ops[i].opcode != 0)
+	{
+		if (ft_strstr(p->line + p->i, g_ops[i].name) == p->line + p->i)
+		{
+			ft_putendl(g_ops[i].name);
+			return (&(g_ops[i]));
+		}
+		i++;
+	}
+	return (NULL);
 }

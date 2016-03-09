@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 18:02:49 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 09:33:14 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 13:36:51 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct		s_bin
 {
+	t_label_list	*labels;
 	unsigned char	*data;
 	size_t			len;
 	char			name[PROG_NAME_LENGTH + 1];
