@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_bin.c                                        :+:      :+:    :+:   */
+/*   check_label.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/08 10:30:25 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 10:16:19 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/09 10:36:20 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/09 10:37:13 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	print_bin(t_bin *bin, char *file)
+void	check_label(t_bin *bin, t_parser *p)
 {
-	int32_t	magic;
-	int		fd;
 
-	if ((fd = open(file, O_TRUNC | O_CREAT | O_WRONLY, 0766)) == -1)
-		ERROR("Failed to open .cor file");
-	magic = COREWAR_EXEC_MAGIC;
-	write(fd, &magic, sizeof(magic));
-	write(fd, &(bin->name[0]), sizeof(bin->name));
-	write(fd, &(bin->len), 4);
-	write(fd, &(bin->comment[0]), sizeof(bin->comment));
-	write(fd, bin->data, bin->len);
-	close(fd);
 }

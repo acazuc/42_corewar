@@ -1,6 +1,6 @@
 ;.name "stayin' alive"
-.comment "salut"
-.name "akkjlsadhflksjadfhlksdfsadfsadfdf"	
+.comment"salut"
+.name"akkjlsadhflksjadfhlksdfsadfsadfdf"	
 sti	r1, %:live, %1			;change live by the right value
 sti	r1, %:live2, %1			;change live by the right value
 ld	%1, r3

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 09:50:43 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 10:36:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*read_next_line(int fd);
 void	parse_line(t_bin *bin, t_parser *p);
 void	parse_name_comment(t_bin *bin, t_parser *p);
 void	parse_error(t_parser *p, char *message);
+void	check_label(t_bin *bin, t_parser *p);
 
 #endif

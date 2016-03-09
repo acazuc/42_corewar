@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:13 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 09:03:51 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 10:19:12 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		*get_output_name(char *input_name)
 	size_t	i;
 
 	i = 0;
-	len = ft_strlen(input_name - 2);
+	len = ft_strlen(input_name) - 2;
 	if (!(output = malloc(sizeof(*output) * (len + 5))))
 		ERROR("Failed to malloc output file name");
 	while (i < len)
@@ -47,10 +47,7 @@ int				main(int ac, char **av)
 		return (-1);
 	}
 	if (av[1][ft_strlen(av[1]) - 1] != 's' || av[1][ft_strlen(av[1]) - 2] != '.')
-	{
-		ft_putstr("Invalid file name, must finish with .s");
-		return (-1);
-	}
+		ERROR("Invalid file name, must finish with .s");
 	bin = parse_file(av[1]);
 	print_bin(&bin, get_output_name(av[1]));
 	return (0);
