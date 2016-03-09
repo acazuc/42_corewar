@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 10:36:20 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 13:58:14 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 16:13:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_label_char(char c)
 	return (0);
 }
 
-void	check_label(t_bin *bin, t_parser *p)
+void		check_label(t_bin *bin, t_parser *p)
 {
 	size_t	i;
 	char	*name;

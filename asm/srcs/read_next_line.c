@@ -6,13 +6,24 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 11:00:50 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 13:57:07 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 16:14:51 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	*read_next_line(int fd)
+static void	init(char **buff, char **line)
+{
+	if (!(*buff = malloc(sizeof(**buff) * 2)))
+		ERROR("Failed to malloc buff");
+	(*buff)[0] = '\0';
+	(*buff)[1] = '\0';
+	if (!(*line = malloc(sizeof(**line))))
+		ERROR("Failed to malloc line");
+	(*line)[0] = '\0';
+}
+
+char		*read_next_line(int fd)
 {
 	char	*line;
 	char	*buff;
@@ -20,13 +31,7 @@ char	*read_next_line(int fd)
 	int		rd;
 
 	has = 0;
-	if (!(buff = malloc(sizeof(*buff) * 2)))
-		ERROR("Failed to malloc buff");
-	buff[0] = '\0';
-	buff[1] = '\0';
-	if (!(line = malloc(sizeof(*line))))
-		ERROR("Failed to malloc line");
-	line[0] = '\0';
+	init(&buff, &line);
 	while ((rd = read(fd, buff, 1)) > 0 && buff[0] != '\n')
 	{
 		has = 1;

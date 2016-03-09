@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 14:23:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 16:03:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	add_label(t_bin *bin, char *name);
 void	parse_instruction(t_bin *bin, t_parser *p);
 t_op	*read_instruction(t_parser *p);
 void	init_ops(void);
+void	read_arg(t_bin *bin, t_parser *p, char arg);
+void	remove_comment(char **line);
 
 #endif

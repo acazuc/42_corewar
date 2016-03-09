@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 09:17:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 13:59:08 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 16:16:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	parse_comment(t_bin *bin, t_parser *p)
 	}
 }
 
-
 static void	parse_name(t_bin *bin, t_parser *p)
 {
 	size_t		j;
@@ -57,16 +56,17 @@ static void	parse_name(t_bin *bin, t_parser *p)
 
 int			parse_name_comment(t_bin *bin, t_parser *p)
 {
-	if (!bin->has_name && ft_strstr(p->line, ".name") == p->line)
+	if (!bin->has_name && ft_strstr(p->line, NAME_CMD_STRING) == p->line)
 	{
-		p->i += 5;
+		p->i += ft_strlen(NAME_CMD_STRING);
 		parse_name(bin, p);
 		bin->has_name = 1;
 		return (1);
 	}
-	else if (!bin->has_comment && ft_strstr(p->line, ".comment") == p->line)
+	else if (!bin->has_comment
+			&& ft_strstr(p->line, COMMENT_CMD_STRING) == p->line)
 	{
-		p->i += 8;
+		p->i += ft_strlen(COMMENT_CMD_STRING);
 		parse_comment(bin, p);
 		bin->has_comment = 1;
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 10:19:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:25:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 16:16:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int8_t	get_ocp_part(t_arg_type arg)
 	return (0);
 }
 
-int8_t	get_ocp3(t_arg_type arg1, t_arg_type arg2, t_arg_type arg3)
+int8_t			get_ocp3(t_arg_type arg1, t_arg_type arg2, t_arg_type arg3)
 {
 	int8_t	ret;
 
@@ -34,7 +34,7 @@ int8_t	get_ocp3(t_arg_type arg1, t_arg_type arg2, t_arg_type arg3)
 	return (ret);
 }
 
-int8_t	get_ocp2(t_arg_type arg1, t_arg_type arg2)
+int8_t			get_ocp2(t_arg_type arg1, t_arg_type arg2)
 {
 	int8_t	ret;
 
@@ -44,7 +44,7 @@ int8_t	get_ocp2(t_arg_type arg1, t_arg_type arg2)
 	return (ret);
 }
 
-int8_t	get_ocp1(t_arg_type arg1)
+int8_t			get_ocp1(t_arg_type arg1)
 {
 	int8_t	ret;
 

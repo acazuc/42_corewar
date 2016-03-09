@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_line.c                                       :+:      :+:    :+:   */
+/*   remove_comment.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 09:07:10 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 16:04:37 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/09 16:00:59 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/09 16:03:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	parse_line(t_bin *bin, t_parser *p)
+void	remove_comment(char **line)
 {
-	p->line = ft_strtrim(p->line);
-	if (ft_strlen(p->line) == 0 || p->line[0] == COMMENT_CHAR)
-		return ;
-	if (!bin->has_name || !bin->has_comment)
-		if (parse_name_comment(bin, p))
-			return ;
-	remove_comment(&p->line);
-	check_label(bin, p);
-	while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
-		p->i++;
-	if (!p->line[p->i])
-		return ;
-	parse_instruction(bin, p);
+	size_t	i;
+
+	i = 0;
+	while ((*line)[i] && (*line)[i] != COMMENT_CHAR)
+		i++;
+	if ((*line)[i] == COMMENT_CHAR)
+	{
+		if (!(*line = ft_strsub(*line, 0, i)))
+			ERROR("Failed to sub comment removing");
+	}
 }
