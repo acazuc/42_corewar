@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disassembler.h                                     :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/08 09:39:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 09:51:53 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/07 17:13:31 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/07 17:14:04 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISASSEMBLER_H
-# define DISASSEMBLER_H
+#ifndef INCLUDES_H
+# define INCLUDES_H
 
-# include "../libft/includes/libft.h"
-# include "includes.h"
-# include "prototypes.h"
-# include "bin.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 #endif

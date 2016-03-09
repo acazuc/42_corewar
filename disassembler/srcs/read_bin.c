@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 09:50:59 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:06:03 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 09:52:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ t_bin	read_bin(char *file)
 		exit(-1);
 	}
 	while ((rd = read(fd, buff, 100)) > 0)
-	{
 		bin_append(&bin, buff, rd);
-	}
 	if (rd == -1)
 	{
 		ft_putendl("Error while reading file");
