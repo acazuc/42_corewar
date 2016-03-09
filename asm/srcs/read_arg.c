@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 15:33:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 16:59:59 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 17:43:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ static void	check_invalid(t_parser *p, char expected, char got)
 	parse_error(p, error_msg);
 }
 
-void	read_arg(t_bin *bin, t_parser *p, char arg)
+int		read_arg(t_bin *bin, t_parser *p, char arg)
 {
 	char	type;
+	int		start;
 
 	if (p->line[p->i] == DIRECT_CHAR)
 		type = T_DIR;
@@ -59,8 +60,10 @@ void	read_arg(t_bin *bin, t_parser *p, char arg)
 	check_invalid(p, arg, type);
 	if (type == T_DIR || type == T_REG)
 		p->i++;
-	while (p->line[p->i] && p->line[p->i] != ' ' && p->line[p->i] != '\t'
-			&& p->line[p->i] != SEPARATOR_CHAR)
+	if (type == T_DIR && p->line[p->i] == ':')
+		return (parse_label(p));
+	start = p->i;
+	while (ft_isdigit(p->line[p->i]))
 		p->i++;
-	(void)bin;
+	return (parse_arg(bin, p, arg));
 }

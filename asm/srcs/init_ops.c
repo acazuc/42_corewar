@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 14:10:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 16:20:04 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/09 17:55:24 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ t_op	*g_ops = NULL;
 void	init_ops(void)
 {
 	t_op	*ops;
-	t_op	local[17] = {
-		{"live", 1, {T_DIR}, 1},
+	t_op	local[17];
+
+	local[0] = {"live", 1, {T_DIR}, 1};
 		{"ld", 2, {T_DIR | T_IND, T_REG}, 2},
 		{"st", 2, {T_REG, T_IND | T_REG}, 3},
 		{"add", 3, {T_REG, T_REG, T_REG}, 4},
