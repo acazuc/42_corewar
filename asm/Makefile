@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/03/10 14:56:23 by acazuc           ###   ########.fr        #
+#    Updated: 2016/03/10 16:00:01 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,11 @@ SRCS_NAME = main.c \
 			build_valid_args.c \
 			check_valid_args.c \
 			invalid_argument.c \
+			get_ocp.c \
+			print_ocp.c \
+			bin_append.c \
+			bin_append_size.c \
+			get_argument_size.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

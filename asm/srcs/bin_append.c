@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 18:07:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 14:42:55 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:15:40 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "asm.h"
 
-void	bin_append(t_bin *bin, unsigned char *data, size_t len)
+void	bin_append(t_bin *bin, void *data, size_t len)
 {
 	unsigned char	*new;
 
@@ -35,7 +35,7 @@ void	bin_append_int16(t_bin *bin, int16_t value)
 
 	tmp = 0;
 	tmp += (value & 0xFF00) >> 8;
-	tmp += (value & 0x00FF);
+	tmp += (value & 0x00FF) << 8;
 	bin_append(bin, &tmp, sizeof(tmp));
 }
 
@@ -45,8 +45,8 @@ void	bin_append_int32(t_bin *bin, int32_t value)
 
 	tmp = 0;
 	tmp += (value & 0xFF000000) >> 24;
-	tmp += (value & 0x00FF0000) >> 16;
-	tmp += (value & 0x0000FF00) >> 8;
-	tmp += (value & 0x000000FF);
+	tmp += (value & 0x00FF0000) >> 8;
+	tmp += (value & 0x0000FF00) << 8;
+	tmp += (value & 0x000000FF) << 24;
 	bin_append(bin, &tmp, sizeof(tmp));
 }

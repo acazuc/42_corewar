@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:56:49 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 16:20:31 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:04:03 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,8 @@
 # define PROG_NAME_LENGTH (128)
 # define COMMENT_LENGTH (2048)
 # define COREWAR_EXEC_MAGIC 0xea83f3
+
+# define MIN(x, y)((x) < (y) ? (x) : (y))
+# define MAX(x, y)((x) > (y) ? (x) : (y))
 
 #endif

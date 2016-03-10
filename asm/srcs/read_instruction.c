@@ -6,62 +6,62 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:43:28 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 14:00:58 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 15:39:21 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static t_instruction_type	return_free(char *mdr, t_instruction_type type)
+static char		return_free(char *mdr, char type)
 {
 	free(mdr);
 	return (type);
 }
 
-static t_instruction_type	return_2(t_parser *p, char *instruction)
+static char		return_2(t_parser *p, char *instruction)
 {
 	if (!ft_strcmp(instruction, "ldi"))
-		return (return_free(instruction, LDI));
+		return (return_free(instruction, OP_LDI));
 	else if (!ft_strcmp(instruction, "sti"))
-		return (return_free(instruction, STI));
+		return (return_free(instruction, OP_STI));
 	else if (!ft_strcmp(instruction, "fork"))
-		return (return_free(instruction, FORK));
+		return (return_free(instruction, OP_FORK));
 	else if (!ft_strcmp(instruction, "lld"))
-		return (return_free(instruction, LLD));
+		return (return_free(instruction, OP_LLD));
 	else if (!ft_strcmp(instruction, "lldi"))
-		return (return_free(instruction, LLDI));
+		return (return_free(instruction, OP_LLDI));
 	else if (!ft_strcmp(instruction, "lfork"))
-		return (return_free(instruction, LFORK));
+		return (return_free(instruction, OP_LFORK));
 	else if (!ft_strcmp(instruction, "aff"))
-		return (return_free(instruction, AFF));
+		return (return_free(instruction, OP_AFF));
 	parse_error(p, "Unknown instruction");
 	return (0);
 }
 
-static t_instruction_type	return_1(t_parser *p, char *instruction)
+static char		return_1(t_parser *p, char *instruction)
 {
 	if (!ft_strcmp(instruction, "live"))
-		return (return_free(instruction, LIVE));
+		return (return_free(instruction, OP_LIVE));
 	else if (!ft_strcmp(instruction, "ld"))
-		return (return_free(instruction, LD));
+		return (return_free(instruction, OP_LD));
 	else if (!ft_strcmp(instruction, "st"))
-		return (return_free(instruction, ST));
+		return (return_free(instruction, OP_ST));
 	else if (!ft_strcmp(instruction, "add"))
-		return (return_free(instruction, ADD));
+		return (return_free(instruction, OP_ADD));
 	else if (!ft_strcmp(instruction, "sub"))
-		return (return_free(instruction, SUB));
+		return (return_free(instruction, OP_SUB));
 	else if (!ft_strcmp(instruction, "and"))
-		return (return_free(instruction, AND));
+		return (return_free(instruction, OP_AND));
 	else if (!ft_strcmp(instruction, "or"))
-		return (return_free(instruction, OR));
+		return (return_free(instruction, OP_OR));
 	else if (!ft_strcmp(instruction, "xor"))
-		return (return_free(instruction, XOR));
+		return (return_free(instruction, OP_XOR));
 	else if (!ft_strcmp(instruction, "zjmp"))
-		return (return_free(instruction, ZJMP));
+		return (return_free(instruction, OP_ZJMP));
 	return (return_2(p, instruction));
 }
 
-t_instruction_type			read_instruction(t_parser *p)
+char			read_instruction(t_parser *p)
 {
 	char	*instruction;
 	int		start;

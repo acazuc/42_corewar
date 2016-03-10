@@ -1,43 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ocp.c                                          :+:      :+:    :+:   */
+/*   get_argument_size.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/08 10:19:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 15:13:22 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/10 15:58:45 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/10 16:00:10 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int8_t			get_ocp3(char arg1, char arg2, char arg3)
+int		get_argument_size(t_argument *argument)
 {
-	int8_t	ret;
-
-	ret = 0;
-	ret += arg1 << 6;
-	ret += arg2 << 4;
-	ret += arg3 << 2;
-	return (ret);
-}
-
-int8_t			get_ocp2(char arg1, char arg2)
-{
-	int8_t	ret;
-
-	ret = 0;
-	ret += arg1 << 6;
-	ret += arg2 << 4;
-	return (ret);
-}
-
-int8_t			get_ocp1(char arg1)
-{
-	int8_t	ret;
-
-	ret = 0;
-	ret += arg1 << 6;
-	return (ret);
+	if (argument->type == T_REG)
+		return (8);
+	if (argument->type == T_IND)
+		return (16);
+	if (argument->type == T_DIR)
+		return (32);
+	return (0);
 }
