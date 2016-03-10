@@ -6,14 +6,14 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 10:37:05 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 11:46:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOTYPES_H
 # define PROTOTYPES_H
 
-# include "instruction_type.h"
+# include "instruction.h"
 # include "parser.h"
 # include "bin.h"
 
@@ -56,5 +56,6 @@ void				read_mnemo_aff(t_bin *bin, t_parser *p);
 int					is_label_char(char c);
 t_argument			*create_argument(void);
 void				add_label_replace(char *name, size_t position);
+t_instruction		*create_instruction(void);
 
 #endif

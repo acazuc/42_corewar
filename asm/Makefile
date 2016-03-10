@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/03/10 10:13:28 by acazuc           ###   ########.fr        #
+#    Updated: 2016/03/10 11:42:01 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS_NAME = main.c \
 			read_arg.c \
 			remove_comment.c \
 			is_label_char.c \
+			create_instruction.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

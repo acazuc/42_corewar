@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 09:42:18 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 11:47:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,41 @@
 
 void	parse_instruction(t_bin *bin, t_parser *p)
 {
-	char	*mnemo;
-	int		start;
+	t_instruction	*instruction;
 
-	start = p->i;
-	while (p->line[p->i] && p->line[p->i] != ' ' && p->line[p->i] != '\t')
-		p->i++;
-	if (!(mnemo = ft_strsub(p->line, start, p->i)))
-		ERROR("Failed to sub mnemonic");
-	if (!ft_strcmp(mnemo, "live"))
+	instruction = create_instruction();
+	instruction->type = read_instrution(p);
+	if (instruction->type == LIVE)
 		read_mnemo_live(bin, p);
-	else if (!ft_strcmp(mnemo, "ld"))
+	else if (instruction->type == LD)
 		read_mnemo_ld(bin, p);
-	else if (!ft_strcmp(mnemo, "st"))
+	else if (instruction->type == ST)
 		read_mnemo_st(bin, p);
-	else if (!ft_strcmp(mnemo, "add"))
+	else if (instruction->type == ADD)
 		read_mnemo_add(bin, p);
-	else if (!ft_strcmp(mnemo, "sub"))
+	else if (instruction->type == SUB)
 		read_mnemo_sub(bin, p);
-	else if (!ft_strcmp(mnemo, "and"))
+	else if (instruction->type == AND)
 		read_mnemo_and(bin, p);
-	else if (!ft_strcmp(mnemo, "or"))
+	else if (instruction->type == OR)
 		read_mnemo_or(bin, p);
-	else if (!ft_strcmp(mnemo, "xor"))
+	else if (instruction->type == XOR)
 		read_mnemo_xor(bin, p);
-	else if (!ft_strcmp(mnemo, "zjmp"))
+	else if (instruction->type == ZJMP)
 		read_mnemo_zjmp(bin, p);
-	else if (!ft_strcmp(mnemo, "ldi"))
+	else if (instruction->type == LDI)
 		read_mnemo_ldi(bin, p);
-	else if (!ft_strcmp(mnemo, "sti"))
+	else if (instruction->type == STI)
 		read_mnemo_sti(bin, p);
-	else if (!ft_strcmp(mnemo, "fork"))
+	else if (instruction->type == FORK)
 		read_mnemo_fork(bin, p);
-	else if (!ft_strcmp(mnemo, "lld"))
+	else if (instruction->type == LLD)
 		read_mnemo_lld(bin, p);
-	else if (!ft_strcmp(mnemo, "lldi"))
+	else if (instruction->type == LLDI)
 		read_mnemo_lldi(bin, p);
-	else if (!ft_strcmp(mnemo, "lfork"))
+	else if (instruction->type == LFORK)
 		read_mnemo_lfork(bin, p);
-	else if (!ft_strcmp(mnemo, "aff"))
+	else if (instruction->type == AFF)
 		read_mnemo_aff(bin, p);
 	else
 		parse_error(p, "Invalid instruction");
