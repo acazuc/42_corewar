@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argument.h                                         :+:      :+:    :+:   */
+/*   build_valid_args.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 09:44:09 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 14:17:00 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/10 14:20:57 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/10 14:26:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGUMENT_H
-# define ARGUMENT_H
+#include "asm.h"
 
-typedef struct			s_argument
+char	*build_valid_args_3(char a1, char a2, char a3)
 {
-	char				type;
-	int32_t				value;
-}						t_argument;
-
-#endif
+	char	
+}

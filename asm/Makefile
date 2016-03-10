@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/03/10 11:42:01 by acazuc           ###   ########.fr        #
+#    Updated: 2016/03/10 13:10:51 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,26 @@ SRCS_NAME = main.c \
 			remove_comment.c \
 			is_label_char.c \
 			create_instruction.c \
+			add_argument.c \
+			create_argument.c \
+			read_mnemo_live.c \
+			read_mnemo_ld.c \
+			read_mnemo_st.c \
+			read_mnemo_st.c \
+			read_mnemo_add.c \
+			read_mnemo_sub.c \
+			read_mnemo_and.c \
+			read_mnemo_or.c \
+			read_mnemo_xor.c \
+			read_mnemo_zjmp.c \
+			read_mnemo_ldi.c \
+			read_mnemo_sti.c \
+			read_mnemo_fork.c \
+			read_mnemo_lld.c \
+			read_mnemo_lldi.c \
+			read_mnemo_lfork.c \
+			read_mnemo_aff.c \
+			add_label_replace.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 15:33:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 10:35:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 14:19:21 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_argument	*parse_arg(t_parser *p, t_argument *argument)
 	int		start;
 
 	start = p->i;
-	while (ft_isdigit(p->i))
+	while (ft_isdigit(p->line[p->i]))
 		p->i++;
 	if (!(sub = ft_strsub(p->line, start, p->i - start)))
 		ERROR("Failed to sub argument value");
@@ -49,19 +49,21 @@ t_argument			*read_arg(t_bin *bin, t_parser *p)
 	t_argument	*argument;
 
 	argument = create_argument();
+	while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
+		p->i++;
 	if (p->line[p->i] == DIRECT_CHAR)
-		argument->type = DIRECT;
+		argument->type = T_DIR;
 	else if (p->line[p->i] == 'r')
-		argument->type = REGISTER;
+		argument->type = T_REG;
 	else if (ft_isdigit(p->line[p->i]))
-		argument->type = INDIRECT;
+		argument->type = T_IND;
 	else if (!p->line[p->i])
 		return (NULL);
 	else
 		parse_error(p, "Unknown parameter");
-	if (argument->type == DIRECT || argument->type == REGISTER)
+	if (argument->type == T_DIR || argument->type == T_REG)
 		p->i++;
-	if (argument->type == DIRECT && p->line[p->i] == LABEL_CHAR)
+	if (argument->type == T_DIR && p->line[p->i] == LABEL_CHAR)
 		return (parse_label(bin, p, argument));
 	return (parse_arg(p, argument));
 }

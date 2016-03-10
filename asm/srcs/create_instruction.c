@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 11:40:02 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 11:41:23 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 12:47:36 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ t_instruction	*create_instruction(void)
 
 	if (!(instruction = malloc(sizeof(*instruction))))
 		ERROR("Failed to mallco instruction");
-	instruction->argument = NULL;
+	instruction->arguments = NULL;
 	return (instruction);
 }

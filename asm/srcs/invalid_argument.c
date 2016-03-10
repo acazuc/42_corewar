@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:05:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 10:05:49 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 14:16:33 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char		*get_expected_chars(char expected)
 		return ("register | indirect | direct");
 }
 
-void		invalid_argument(t_parser *p, char expected, char got)
+void			invalid_argument(t_parser *p, char expected, char got)
 {
 	char	*error_msg;
 

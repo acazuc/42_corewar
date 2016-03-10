@@ -6,69 +6,71 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 11:47:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 14:07:44 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	parse_instruction(t_bin *bin, t_parser *p)
+static void		switch_case_2(t_parser *p, t_bin *bin
+		, t_instruction *instruction)
+{
+	if (instruction->type == LDI)
+		read_mnemo_ldi(p, bin, instruction);
+	else if (instruction->type == STI)
+		read_mnemo_sti(p, bin, instruction);
+	else if (instruction->type == FORK)
+		read_mnemo_fork(p, bin, instruction);
+	else if (instruction->type == LLD)
+		read_mnemo_lld(p, bin, instruction);
+	else if (instruction->type == LLDI)
+		read_mnemo_lldi(p, bin, instruction);
+	else if (instruction->type == LFORK)
+		read_mnemo_lfork(p, bin, instruction);
+	else if (instruction->type == AFF)
+		read_mnemo_aff(p, bin, instruction);
+	else
+		parse_error(p, "Unknown instruction");
+}
+
+static void		switch_case(t_parser *p, t_bin *bin, t_instruction *instruction)
+{
+	if (instruction->type == LIVE)
+		read_mnemo_live(p, bin, instruction);
+	else if (instruction->type == LD)
+		read_mnemo_ld(p, bin, instruction);
+	else if (instruction->type == ST)
+		read_mnemo_st(p, bin, instruction);
+	else if (instruction->type == ADD)
+		read_mnemo_add(p, bin, instruction);
+	else if (instruction->type == SUB)
+		read_mnemo_sub(p, bin, instruction);
+	else if (instruction->type == AND)
+		read_mnemo_and(p, bin, instruction);
+	else if (instruction->type == OR)
+		read_mnemo_or(p, bin, instruction);
+	else if (instruction->type == XOR)
+		read_mnemo_xor(p, bin, instruction);
+	else if (instruction->type == ZJMP)
+		read_mnemo_zjmp(p, bin, instruction);
+	else
+		switch_case_2(p, bin, instruction);
+}
+
+void			parse_instruction(t_bin *bin, t_parser *p)
 {
 	t_instruction	*instruction;
+	t_argument		*argument;
 
 	instruction = create_instruction();
-	instruction->type = read_instrution(p);
-	if (instruction->type == LIVE)
-		read_mnemo_live(bin, p);
-	else if (instruction->type == LD)
-		read_mnemo_ld(bin, p);
-	else if (instruction->type == ST)
-		read_mnemo_st(bin, p);
-	else if (instruction->type == ADD)
-		read_mnemo_add(bin, p);
-	else if (instruction->type == SUB)
-		read_mnemo_sub(bin, p);
-	else if (instruction->type == AND)
-		read_mnemo_and(bin, p);
-	else if (instruction->type == OR)
-		read_mnemo_or(bin, p);
-	else if (instruction->type == XOR)
-		read_mnemo_xor(bin, p);
-	else if (instruction->type == ZJMP)
-		read_mnemo_zjmp(bin, p);
-	else if (instruction->type == LDI)
-		read_mnemo_ldi(bin, p);
-	else if (instruction->type == STI)
-		read_mnemo_sti(bin, p);
-	else if (instruction->type == FORK)
-		read_mnemo_fork(bin, p);
-	else if (instruction->type == LLD)
-		read_mnemo_lld(bin, p);
-	else if (instruction->type == LLDI)
-		read_mnemo_lldi(bin, p);
-	else if (instruction->type == LFORK)
-		read_mnemo_lfork(bin, p);
-	else if (instruction->type == AFF)
-		read_mnemo_aff(bin, p);
-	else
-		parse_error(p, "Invalid instruction");
-	/*i = 0;
-	while (i < op->arg_nb)
+	instruction->type = read_instruction(p);
+	while ((argument = read_arg(bin, p)))
 	{
+		add_argument(instruction, argument);
 		while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
 			p->i++;
-		ft_putendl(p->line + p->i);
-		read_arg(bin, p, op->arg_type[i]);
-		while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
+		if (p->line[p->i] == SEPARATOR_CHAR)
 			p->i++;
-		if (i < op->arg_nb - 1)
-		{
-			if (p->line[p->i] != SEPARATOR_CHAR)
-				parse_error(p, "Expected SEPRATOR_CHAR");
-			p->i++;
-		}
-		else if (p->line[p->i] != '\0')
-			parse_error(p, "Unexpected parameter");
-		i++;
-	}*/
+	}
+	switch_case(p, bin, instruction);
 }

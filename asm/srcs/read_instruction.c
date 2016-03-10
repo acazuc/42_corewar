@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:43:28 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 11:45:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 14:00:58 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,28 @@ static t_instruction_type	return_free(char *mdr, t_instruction_type type)
 	return (type);
 }
 
-t_instruction_type			read_instruction(t_parser *p)
+static t_instruction_type	return_2(t_parser *p, char *instruction)
 {
-	char	*instruction;
-	int		start;
+	if (!ft_strcmp(instruction, "ldi"))
+		return (return_free(instruction, LDI));
+	else if (!ft_strcmp(instruction, "sti"))
+		return (return_free(instruction, STI));
+	else if (!ft_strcmp(instruction, "fork"))
+		return (return_free(instruction, FORK));
+	else if (!ft_strcmp(instruction, "lld"))
+		return (return_free(instruction, LLD));
+	else if (!ft_strcmp(instruction, "lldi"))
+		return (return_free(instruction, LLDI));
+	else if (!ft_strcmp(instruction, "lfork"))
+		return (return_free(instruction, LFORK));
+	else if (!ft_strcmp(instruction, "aff"))
+		return (return_free(instruction, AFF));
+	parse_error(p, "Unknown instruction");
+	return (0);
+}
 
-	start = p->i;
-	while (p->line[p->i] && p->line[p->i] != ' ' && p->line[p->i] != '\t')
-		p->i++;
-	if (!(instruction = ft_strsub(p->line, start, p->i)))
-		ERROR("Failed to sub instruction");
+static t_instruction_type	return_1(t_parser *p, char *instruction)
+{
 	if (!ft_strcmp(instruction, "live"))
 		return (return_free(instruction, LIVE));
 	else if (!ft_strcmp(instruction, "ld"))
@@ -46,20 +58,20 @@ t_instruction_type			read_instruction(t_parser *p)
 		return (return_free(instruction, XOR));
 	else if (!ft_strcmp(instruction, "zjmp"))
 		return (return_free(instruction, ZJMP));
-	else if (!ft_strcmp(instruction, "ldi"))
-		return (return_free(instruction, LDI));
-	else if (!ft_strcmp(instruction, "sti"))
-		return (return_free(instruction, STI));
-	else if (!ft_strcmp(instruction, "fork"))
-		return (return_free(instruction, FORK));
-	else if (!ft_strcmp(instruction, "lld"))
-		return (return_free(instruction, LLD));
-	else if (!ft_strcmp(instruction, "lldi"))
-		return (return_free(instruction, LLDI));
-	else if (!ft_strcmp(instruction, "lfork"))
-		return (return_free(instruction, LFORK));
-	else if (!ft_strcmp(instruction, "aff"))
-		return (return_free(instruction, AFF));
-	parse_error(p, "Unknown instruction");
-	return (0);
+	return (return_2(p, instruction));
+}
+
+t_instruction_type			read_instruction(t_parser *p)
+{
+	char	*instruction;
+	int		start;
+
+	while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
+		p->i++;
+	start = p->i;
+	while (p->line[p->i] && p->line[p->i] != ' ' && p->line[p->i] != '\t')
+		p->i++;
+	if (!(instruction = ft_strsub(p->line, start, p->i - start)))
+		ERROR("Failed to sub instruction");
+	return (return_1(p, instruction));
 }
