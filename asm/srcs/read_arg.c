@@ -6,64 +6,62 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 15:33:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 17:43:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 10:35:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char	*get_expected_chars(char expected)
+static t_argument	*parse_label(t_bin *bin, t_parser *p, t_argument *argument)
 {
-	if (expected == T_REG)
-		return ("register");
-	else if (expected == T_IND)
-		return ("indirect");
-	else if (expected == T_DIR)
-		return ("direct");
-	else if (expected == (T_REG | T_IND))
-		return ("register | indirect");
-	else if (expected == (T_REG | T_DIR))
-		return ("register | direct");
-	else if (expected == (T_IND | T_DIR))
-		return ("indirect | direct");
-	else
-		return ("register | indirect | direct");
-}
-
-static void	check_invalid(t_parser *p, char expected, char got)
-{
-	char	*error_msg;
-
-	if (expected & got)
-		return ;
-	error_msg = "Invalid arg, expected ";
-	if (!(error_msg = ft_strjoin(error_msg, get_expected_chars(expected))))
-		ERROR("Failed to malloc invalid arg expected msg");
-	if (!(error_msg = ft_strjoin_free1(error_msg, ", got ")))
-		ERROR("Failed to malloc invalid arg msg");
-	if (!(error_msg = ft_strjoin_free1(error_msg, get_expected_chars(got))))
-		ERROR("Failed to malloc invalid arg got msg");
-	parse_error(p, error_msg);
-}
-
-int		read_arg(t_bin *bin, t_parser *p, char arg)
-{
-	char	type;
+	char	*name;
 	int		start;
 
-	if (p->line[p->i] == DIRECT_CHAR)
-		type = T_DIR;
-	else if (p->line[p->i] == 'r')
-		type = T_REG;
-	else
-		type = T_IND;
-	check_invalid(p, arg, type);
-	if (type == T_DIR || type == T_REG)
-		p->i++;
-	if (type == T_DIR && p->line[p->i] == ':')
-		return (parse_label(p));
+	p->i++;
 	start = p->i;
-	while (ft_isdigit(p->line[p->i]))
+	while (is_label_char(p->line[p->i]))
 		p->i++;
-	return (parse_arg(bin, p, arg));
+	if (p->line[p->i] && p->line[p->i] != SEPARATOR_CHAR
+			&& p->line[p->i] != ' ' && p->line[p->i] != '\t')
+		parse_error(p, "Invalid label value");
+	if (!(name = ft_strsub(p->line, start, p->i - start)))
+		ERROR("Failed to sub label name");
+	add_label_replace(name, bin->len);
+	return (argument);
+}
+
+static t_argument	*parse_arg(t_parser *p, t_argument *argument)
+{
+	char	*sub;
+	int		start;
+
+	start = p->i;
+	while (ft_isdigit(p->i))
+		p->i++;
+	if (!(sub = ft_strsub(p->line, start, p->i - start)))
+		ERROR("Failed to sub argument value");
+	argument->value = ft_atoi(sub);
+	return (argument);
+}
+
+t_argument			*read_arg(t_bin *bin, t_parser *p)
+{
+	t_argument	*argument;
+
+	argument = create_argument();
+	if (p->line[p->i] == DIRECT_CHAR)
+		argument->type = DIRECT;
+	else if (p->line[p->i] == 'r')
+		argument->type = REGISTER;
+	else if (ft_isdigit(p->line[p->i]))
+		argument->type = INDIRECT;
+	else if (!p->line[p->i])
+		return (NULL);
+	else
+		parse_error(p, "Unknown parameter");
+	if (argument->type == DIRECT || argument->type == REGISTER)
+		p->i++;
+	if (argument->type == DIRECT && p->line[p->i] == LABEL_CHAR)
+		return (parse_label(bin, p, argument));
+	return (parse_arg(p, argument));
 }

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_label.c                                      :+:      :+:    :+:   */
+/*   instruction_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 10:36:20 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 10:13:08 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/10 09:55:33 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/10 09:57:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#ifndef INSTRUCTION_TYPE_H
+# define INSTRUCTION_TYPE_H
 
-void		check_label(t_bin *bin, t_parser *p)
+typedef enum	e_instruction_type
 {
-	size_t	i;
-	char	*name;
+	LIVE,
+	LD,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF
+}				t_instruction_type;
 
-	i = 0;
-	while (is_label_char(p->line[i]))
-		i++;
-	if (p->line[i] == LABEL_CHAR)
-	{
-		if (!(name = ft_strsub(p->line, 0, i)))
-			ERROR("Failed to sub label name");
-		add_label(bin, name);
-		p->i = i + 1;
-	}
-}
+#endif

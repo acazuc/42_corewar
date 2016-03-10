@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op.h                                               :+:      :+:    :+:   */
+/*   argument.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 14:21:13 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 14:26:17 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/10 09:44:09 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/10 10:29:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OP_H
-# define OP_H
+#ifndef ARGUMENT_H
+# define ARGUMENT_H
 
-typedef struct	s_op
+# include "argument_type.h"
+
+typedef struct			s_argument
 {
-	char		*name;
-	char		arg_nb;
-	char		arg_type[3];
-	char		opcode;
-}				t_op;
+	t_argument_type		type;
+	int32_t				value;
+}						t_argument;
 
 #endif

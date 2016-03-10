@@ -11,7 +11,7 @@ forks:
 	xor	r2, %15, r4		#if (r4) {carry = 0}
 
 live2:
-	live 	%4
+	live 	%:live
 	zjmp	%:endwhile		#if (carry)
 	fork	%:forks
 	ld	%0, r4			#carry = 1
@@ -20,5 +20,5 @@ live2:
 endwhile:
 	ld	%0, r4			#carry = 1
 
-live:	live %4
+live:	live %:live
 		zjmp %:live
