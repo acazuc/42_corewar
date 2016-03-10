@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 09:25:14 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 18:35:21 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 19:44:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	read_mnemo_or(t_parser *p, t_bin *bin, t_instruction *instr)
 				, T_REG | T_IND | T_DIR, T_REG));
 	bin_append_int8(bin, OP_OR);
 	print_ocp(bin, instr);
-	bin_append_size(bin, instr->arguments->argument->value
-			, get_argument_size(instr->arguments->argument));
-	bin_append_size(bin, instr->arguments->next->argument->value
-			, get_argument_size(instr->arguments->next->argument));
+	bin_append_size(bin, instr->arguments->argument);
+	bin_append_size(bin, instr->arguments->next->argument);
 	bin_append_int8(bin, instr->arguments->next->next->argument->value);
 }
