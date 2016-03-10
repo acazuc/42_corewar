@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 14:06:03 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 14:56:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,10 @@ t_argument			*create_argument(void);
 void				add_label_replace(char *name, size_t position);
 t_instruction		*create_instruction(void);
 void				add_argument(t_instruction *i, t_argument *a);
+char				*build_valid_args_3(char a1, char a2, char a3);
+char				*build_valid_args_2(char a1, char a2);
+char				*build_valid_args_1(char a1);
+void				check_valid_args(t_parser *p, t_instruction *i, char *e);
+void				invalid_argument(t_parser *p, char expected, char got);
 
 #endif
