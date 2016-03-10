@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 15:59:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 17:59:55 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ char				*build_valid_args_2(char a1, char a2);
 char				*build_valid_args_1(char a1);
 void				check_valid_args(t_parser *p, t_instruction *i, char *e);
 void				invalid_argument(t_parser *p, char expected, char got);
-int8_t				get_ocp3(char arg1, char arg2, char arg3);
-int8_t				get_ocp2(char arg1, char arg2);
-int8_t				get_ocp1(char arg1);
+int16_t				get_ocp3(char arg1, char arg2, char arg3);
+int16_t				get_ocp2(char arg1, char arg2);
+int16_t				get_ocp1(char arg1);
 void				bin_append_int8(t_bin *bin, int8_t value);
 void				bin_append_int16(t_bin *bin, int16_t value);
 void				bin_append_int32(t_bin *bin, int32_t value);

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 18:07:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 16:15:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/10 17:26:21 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	bin_append_int16(t_bin *bin, int16_t value)
 	int16_t	tmp;
 
 	tmp = 0;
-	tmp += (value & 0xFF00) >> 8;
-	tmp += (value & 0x00FF) << 8;
+	tmp |= (value & 0xFF00) >> 8;
+	tmp |= (value & 0x00FF) << 8;
 	bin_append(bin, &tmp, sizeof(tmp));
 }
 
@@ -44,9 +44,9 @@ void	bin_append_int32(t_bin *bin, int32_t value)
 	int32_t	tmp;
 
 	tmp = 0;
-	tmp += (value & 0xFF000000) >> 24;
-	tmp += (value & 0x00FF0000) >> 8;
-	tmp += (value & 0x0000FF00) << 8;
-	tmp += (value & 0x000000FF) << 24;
+	tmp |= (value & 0xFF000000) >> 24;
+	tmp |= (value & 0x00FF0000) >> 8;
+	tmp |= (value & 0x0000FF00) << 8;
+	tmp |= (value & 0x000000FF) << 24;
 	bin_append(bin, &tmp, sizeof(tmp));
 }
