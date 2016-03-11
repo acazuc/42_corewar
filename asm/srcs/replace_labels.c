@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:41:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 16:52:05 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/11 17:41:05 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ static void		replace_label(t_bin *bin, t_label_replace *label, size_t rep_pos)
 	char	ocp;
 
 	pos = label->position;
-	opc = bin->datas[pos];
-	ocp = bin->datas[pos + 1];
+	opc = bin->data[pos];
+	ocp = bin->data[pos + 1];
 	pos += get_offset(bin, pos, label->arg_pos);
 }
 
