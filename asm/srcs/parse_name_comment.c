@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 09:17:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/09 16:16:11 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/11 16:06:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	parse_comment(t_bin *bin, t_parser *p)
 	{
 		if (j == COMMENT_LENGTH)
 			parse_error(p, "Comment to long");
-		bin->comment[j] = p->line[p->i];
+		bin->header.comment[j] = p->line[p->i];
 		j++;
 		p->i++;
 	}
@@ -46,7 +46,7 @@ static void	parse_name(t_bin *bin, t_parser *p)
 	{
 		if (j == PROG_NAME_LENGTH)
 			parse_error(p, "Name to long");
-		bin->name[j] = p->line[p->i];
+		bin->header.name[j] = p->line[p->i];
 		j++;
 		p->i++;
 	}

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_label.c                                        :+:      :+:    :+:   */
+/*   label_replace.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 13:31:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 15:37:14 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/11 13:12:10 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/11 14:35:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#ifndef LABEL_REPLACE_H
+# define LABEL_REPLACE_H
 
-void	add_label(t_bin *bin, char *name)
+typedef struct		s_label_replace
 {
-	t_label_list	*list;
+	char			*name;
+	size_t			position;
+	int				arg_pos;
+	int				is_16b;
+}					t_label_replace;
 
-	if (!(list = malloc(sizeof(*list))))
-		ERROR("Failed to malloc label list");
-	if (!(list->label = malloc(sizeof(*list->label))))
-		ERROR("Failed to malloc label struct");
-	list->label->name = name;
-	list->label->position = bin->len;
-	list->next = bin->labels;
-	bin->labels = list;
-}
+#endif

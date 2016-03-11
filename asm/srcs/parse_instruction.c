@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/10 15:38:14 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/11 13:47:13 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,19 @@ void			parse_instruction(t_bin *bin, t_parser *p)
 {
 	t_instruction	*instruction;
 	t_argument		*argument;
+	int				i;
 
 	instruction = create_instruction();
 	instruction->type = read_instruction(p);
-	while ((argument = read_arg(bin, p)))
+	i = 0;
+	while ((argument = read_arg(bin, p, instruction->type, i)))
 	{
 		add_argument(instruction, argument);
 		while (p->line[p->i] == ' ' || p->line[p->i] == '\t')
 			p->i++;
 		if (p->line[p->i] == SEPARATOR_CHAR)
 			p->i++;
+		i++;
 	}
 	switch_case(p, bin, instruction);
 }
