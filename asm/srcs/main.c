@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:07:13 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 15:36:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/12 13:04:17 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int				main(int ac, char **av)
 	bin = parse_file(av[1]);
 	print_labels(&bin);
 	print_labels_replace(&bin);
+	replace_labels(&bin);
 	print_bin(&bin, get_output_name(av[1]));
 	return (0);
 }

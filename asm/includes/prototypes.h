@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 14:39:19 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/12 11:40:19 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void				bin_append_int32(t_bin *bin, int32_t value);
 void				print_ocp(t_bin *bin, t_instruction *instr);
 void				bin_append_size(t_bin *bin, t_argument *argument);
 int					get_argument_size(t_argument *argument);
+void				replace_labels(t_bin *bin);
 
 #endif
