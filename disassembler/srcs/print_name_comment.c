@@ -1,44 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dump.c                                             :+:      :+:    :+:   */
+/*   print_name_comment.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/08 09:58:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:08:23 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/12 15:56:41 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/12 15:59:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "disassembler.h"
 
-static void	print_hex_char(char c)
+void	print_name(t_bin *bin)
 {
-	if (c >= 10)
-		ft_putchar(c - 10 + 'a');
-	else
-		ft_putchar(c + '0');
+	ft_putstr(".name \"");
+	ft_putstr(bin->header.name);
+	ft_putendl("\"");
 }
 
-static void	print_byte(unsigned char byte, int is_last)
+void	print_comment(t_bin *bin)
 {
-	ft_putstr("0x");
-	print_hex_char(byte / 16);
-	print_hex_char(byte % 16);
-	if (!is_last)
-		ft_putchar(',');
-	else
-		ft_putchar('\n');
-}
-
-void		dump(t_bin *bin)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < bin->len)
-	{
-		print_byte(bin->data[i], i == bin->len - 1);
-		i++;
-	}
+	ft_putstr(".comment \"");
+	ft_putstr(bin->header.comment);
+	ft_putendl("\"");
 }

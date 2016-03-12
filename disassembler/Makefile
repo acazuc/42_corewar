@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/03/08 09:56:42 by acazuc           ###   ########.fr        #
+#    Updated: 2016/03/12 15:58:29 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,11 @@ INCLUDES_PATH = includes/
 SRCS_PATH = srcs/
 
 SRCS_NAME = main.c \
-			read_bin.c \
-			bin_init.c \
-			bin_append.c \
-			dump.c \
+			error_quit.c \
+			read_header.c \
+			get_little.c \
+			print_bin.c \
+			print_name_comment.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/08 09:43:31 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/08 10:07:35 by acazuc           ###   ########.fr       */
+/*   Created: 2016/03/12 15:25:57 by acazuc            #+#    #+#             */
+/*   Updated: 2016/03/12 15:52:14 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int		main(int ac, char **av)
 	t_bin	bin;
 
 	if (ac != 2)
-	{
-		ft_putendl("./disassemble <filename.cor>");
-		exit(-1);
-	}
-	bin = read_bin(av[1]);
-	dump(&bin);
+		ERROR("usage: ./disassembler <corobj.cor>");
+	if ((bin.fd = open(av[1], O_RDONLY)) == -1)
+		ERROR("Failed to open file");
+	read_header(&bin);
+	print_bin(&bin);
 }
