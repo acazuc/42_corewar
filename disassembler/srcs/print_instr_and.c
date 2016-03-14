@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 10:59:04 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/14 14:36:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 15:10:59 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	print_instr_and(t_bin *bin)
 		print_direct(read_int32(bin));
 	print_arg_sep();
 	print_register(read_int8(bin));
+	ft_putchar('\n');
 }
