@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 10:30:25 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 16:06:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 09:58:10 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int32_t	to_big(int32_t v)
 {
 	int32_t		r;
 
-	r=  0;
+	r = 0;
 	r |= (v & 0xFF000000) >> 24;
 	r |= (v & 0x00FF0000) >> 8;
 	r |= (v & 0x0000FF00) << 8;
@@ -24,7 +24,7 @@ static int32_t	to_big(int32_t v)
 	return (r);
 }
 
-void	print_bin(t_bin *bin, char *file)
+void			print_bin(t_bin *bin, char *file)
 {
 	int		fd;
 

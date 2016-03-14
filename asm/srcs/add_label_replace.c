@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 13:10:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 15:38:26 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 09:58:22 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void		push_label_replace(t_bin *bin, t_label_replace *label)
 	bin->labels_replace = new;
 }
 
-void	add_label_replace(t_bin *bin, char *name, size_t position, short datas)
+void			add_label_replace(t_bin *bin, char *name, size_t position
+		, short datas)
 {
 	t_label_replace		*replace;
 	char				instr;

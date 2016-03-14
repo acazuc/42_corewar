@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:41:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/12 14:53:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 10:04:05 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,75 +62,54 @@ static int		get_offset(t_bin *bin, size_t l_pos, int arg_pos)
 			return (2);
 		return (4);
 	}
-	if (op == OP_STI)
+	if (op == OP_STI || op == OP_ST)
 	{
 		if (arg_pos == 1)
 			return (3);
 		return (3 + get_param_size(op, bin->data[l_pos + 1], 3));
 	}
-	if (op == OP_LD || op == OP_LLD)
-		return (2);
-	if (op == OP_AND || op == OP_OR || op == OP_XOR)
+	if (op == OP_AND || op == OP_OR || op == OP_XOR || op == OP_LD
+			|| op == OP_LLD)
 	{
 		if (arg_pos == 0)
 			return (2);
 		return (2 + get_param_size(op, bin->data[l_pos + 1], 2));
 	}
-	if (op == OP_ST)
-		return (3);
 	return (0);
 }
 
-static void		replace_16b(t_bin *bin, size_t pos, uint16_t val)
+static void		replace_label(t_bin *bin, t_label_replace *label
+		, size_t rep_pos)
 {
-	ft_putstr("Replacing with val ");
-	ft_putul(val);
-	ft_putstr(" at position ");
-	ft_putul(pos);
-	ft_putstr(" {");
-	ft_putul((uint8_t)(val >> 8));
-	ft_putchar(',');
-	ft_putul(val);
-	ft_putchar('}');
-	ft_putchar('\n');
-	bin->data[pos + 0] = val >> 8;
-	bin->data[pos + 1] = val >> 0;
-}
-
-static void		replace_32b(t_bin *bin, size_t pos, uint32_t val)
-{
-	ft_putstr("Replacing with val ");
-	ft_putul(val);
-	ft_putstr(" at position ");
-	ft_putul(pos);
-	ft_putchar('\n');
-	bin->data[pos + 0] = val >> 24;
-	bin->data[pos + 1] = val >> 16;
-	bin->data[pos + 2] = val >> 8;
-	bin->data[pos + 3] = val >> 0;
-}
-
-static void		replace_label(t_bin *bin, t_label_replace *label, size_t rep_pos)
-{
-	size_t	pos;
+	size_t		pos;
+	uint32_t	val;
 
 	pos = label->position;
 	pos += get_offset(bin, pos, label->arg_pos);
+	val = rep_pos - label->position;
 	if (label->is_16b)
-		replace_16b(bin, pos, rep_pos - label->position);
+	{
+		bin->data[pos + 0] = val >> 8;
+		bin->data[pos + 1] = val >> 0;
+	}
 	else
-		replace_32b(bin, pos, rep_pos - label->position);
-
+	{
+		bin->data[pos + 0] = val >> 24;
+		bin->data[pos + 1] = val >> 16;
+		bin->data[pos + 2] = val >> 8;
+		bin->data[pos + 3] = val >> 0;
+	}
 }
 
-void	replace_labels(t_bin *bin)
+void			replace_labels(t_bin *bin)
 {
 	t_label_replace_list	*lst;
 
 	lst = bin->labels_replace;
 	while (lst)
 	{
-		replace_label(bin, lst->label, get_label_position(bin, lst->label->name));
+		replace_label(bin, lst->label, get_label_position(bin
+					, lst->label->name));
 		lst = lst->next;
 	}
 }

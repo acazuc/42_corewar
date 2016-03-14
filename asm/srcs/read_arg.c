@@ -6,14 +6,14 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 15:33:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/11 14:40:36 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 10:04:30 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 static t_argument	*parse_label(t_bin *bin, t_parser *p, t_argument *argument
-		, char instr, char position)
+		, short datas)
 {
 	char	*name;
 	int		start;
@@ -27,7 +27,7 @@ static t_argument	*parse_label(t_bin *bin, t_parser *p, t_argument *argument
 		parse_error(p, "Invalid label value");
 	if (!(name = ft_strsub(p->line, start, p->i - start)))
 		ERROR("Failed to sub label name");
-	add_label_replace(bin, name, bin->len, (instr << 8) + position);
+	add_label_replace(bin, name, bin->len, datas);
 	return (argument);
 }
 
@@ -70,6 +70,6 @@ t_argument			*read_arg(t_bin *bin, t_parser *p, char instr
 	if (argument->type == T_DIR || argument->type == T_REG)
 		p->i++;
 	if (argument->type != T_REG && p->line[p->i] == LABEL_CHAR)
-		return (parse_label(bin, p, argument, instr, position));
+		return (parse_label(bin, p, argument, (instr << 8) + position));
 	return (parse_arg(p, argument));
 }

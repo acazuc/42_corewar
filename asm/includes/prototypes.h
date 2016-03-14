@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:15:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/12 11:40:19 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 09:55:26 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void				print_big_int64(int fd, int64_t value);
 void				add_label(t_bin *bin, char *name);
 void				parse_instruction(t_bin *bin, t_parser *p);
 char				read_instruction(t_parser *p);
-t_argument			*read_arg(t_bin *bin, t_parser *p, char instr, char position);
+t_argument			*read_arg(t_bin *bin, t_parser *p, char instr, char pos);
 void				remove_comment(char **line);
 void				read_mnemo_live(t_parser *p, t_bin *bin, t_instruction *i);
 void				read_mnemo_ld(t_parser *p, t_bin *bin, t_instruction *i);
@@ -54,7 +54,7 @@ void				read_mnemo_lfork(t_parser *p, t_bin *bin, t_instruction *i);
 void				read_mnemo_aff(t_parser *p, t_bin *bin, t_instruction *i);
 int					is_label_char(char c);
 t_argument			*create_argument(void);
-void				add_label_replace(t_bin *bin, char *name, size_t position, short datas);
+void				add_label_replace(t_bin *b, char *n, size_t p, short d);
 t_instruction		*create_instruction(void);
 void				add_argument(t_instruction *i, t_argument *a);
 char				*build_valid_args_3(char a1, char a2, char a3);
