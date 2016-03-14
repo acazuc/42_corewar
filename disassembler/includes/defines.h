@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 17:56:49 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/12 15:32:22 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 16:48:44 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define OP_LDI 10
 # define OP_STI 11
 # define OP_FORK 12
-# define OP_LLD 13			
+# define OP_LLD 13
 # define OP_LLDI 14
 # define OP_LFORK 15
 # define OP_AFF 16

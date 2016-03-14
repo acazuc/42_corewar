@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 15:52:21 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/14 14:29:48 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 16:48:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	print_instr(t_bin *bin, char instr)
 		print_instr_2(bin, instr);
 }
 
-void	print_bin(t_bin *bin)
+void		print_bin(t_bin *bin)
 {
 	char	instr;
 
