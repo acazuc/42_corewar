@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/03/12 15:58:29 by acazuc           ###   ########.fr        #
+#    Updated: 2016/03/14 14:04:39 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,25 @@ SRCS_NAME = main.c \
 			get_little.c \
 			print_bin.c \
 			print_name_comment.c \
+			print_instr_live.c \
+			print_instr_ld.c \
+			print_instr_st.c \
+			print_instr_add.c \
+			print_instr_sub.c \
+			print_instr_and.c \
+			print_instr_or.c \
+			print_instr_xor.c \
+			print_instr_zjmp.c \
+			print_instr_ldi.c \
+			print_instr_sti.c \
+			print_instr_fork.c \
+			print_instr_lld.c \
+			print_instr_lldi.c \
+			print_instr_lfork.c \
+			print_instr_aff.c \
+			read_funcs.c \
+			get_ocp_val.c \
+			print_funcs.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

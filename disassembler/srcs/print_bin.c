@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 15:52:21 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/12 17:02:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 14:29:48 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,8 @@ static void	print_instr_2(t_bin *bin, char instr)
 		ERROR("Invalid instruction");
 }
 
-static void	print_instr(t_bin *bin)
+static void	print_instr(t_bin *bin, char instr)
 {
-	char	instr;
-
-	if (bin->i >= bin->header.prog_size - 1)
-		ERROR("Invalid instruction position");
-	instr = bin->data[bin->i++];
 	if (instr == OP_LIVE)
 		print_instr_live(bin);
 	else if (instr == OP_LD)
@@ -63,12 +58,15 @@ static void	print_instr(t_bin *bin)
 
 void	print_bin(t_bin *bin)
 {
+	char	instr;
+
 	print_name(bin);
 	print_comment(bin);
-	bin->i = sizeof(bin->header);
+	ft_putchar('\n');
+	bin->i = 0;
 	while (bin->i < bin->header.prog_size)
 	{
-		print_instr(bin);
-		bin->i++;
+		instr = read_int8(bin);
+		print_instr(bin, instr);
 	}
 }

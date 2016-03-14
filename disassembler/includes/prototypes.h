@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 15:29:51 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/12 17:01:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/14 14:10:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,13 @@ void	print_instr_lld(t_bin *bin);
 void	print_instr_lldi(t_bin *bin);
 void	print_instr_lfork(t_bin *bin);
 void	print_instr_aff(t_bin *bin);
+int32_t	read_int32(t_bin *bin);
+int16_t	read_int16(t_bin *bin);
+int8_t	read_int8(t_bin *bin);
+char	read_ocp_val(char ocp, int val);
+void	print_register(int8_t val);
+void	print_indirect(int16_t val);
+void	print_direct(int32_t val);
+void	print_arg_sep(void);
 
 #endif
